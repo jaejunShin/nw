@@ -49,8 +49,9 @@ if num > 5 :
 else :
     print "num < 5"
 
-if num % 2 == 0 :
+if num % 2 == 0 :           ## {}가 없기 때문에 들여쓰기로 구분
     print "even"
+    print "exe"
 elif num % 2 == 1 :
     print "odd"
 else :

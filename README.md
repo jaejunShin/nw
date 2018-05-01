@@ -1,3 +1,3 @@
 ## nw
 
-tcp soket server & client ex
+tcp soket server & client

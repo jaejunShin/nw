@@ -29,10 +29,12 @@ print data
 print data.index("hi")
 # print data.index("nothing")         ## 존재하지 않는 값
 
-## 사전
+## 사전 (키 : 값) 형태
 user = {}
-user['me'] = {'age':26, 'address':'daejeon'}    ## {키 : 값} 형태
-user['you'] = {'age':30, 'address':'seoul'}
+user['me'] = {'age':26, 'address':'daejeon'}    ## 사전 안의 사전
+user['you'] = {'age':30, 'address':'seoul'}     
+
+print type (user)
 
 print user
 print user['me']
@@ -40,14 +42,15 @@ print "user keys:", user.keys()       ## key 확인
 print "me" in user.keys()
 
 ## 조건문 if, if else, if elif else
-num = 4
+num = input("\ninput number : ")               ## 입력문
+
 if num > 0 :
     print "num > 0"
 
 if num > 5 :
     print "num > 5"
 else :
-    print "num < 5"
+    print "num =< 5"
 
 if num % 2 == 0 :           ## {}가 없기 때문에 들여쓰기로 구분
     print "even"
@@ -56,3 +59,5 @@ elif num % 2 == 1 :
     print "odd"
 else :
     print "????"
+
+

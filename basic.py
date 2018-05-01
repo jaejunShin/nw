@@ -34,15 +34,16 @@ user = {}
 user['me'] = {'age':26, 'address':'daejeon'}    ## 사전 안의 사전
 user['you'] = {'age':30, 'address':'seoul'}     
 
-print type (user)
-
 print user
 print user['me']
 print "user keys:", user.keys()       ## key 확인
 print "me" in user.keys()
 
+print type (user)
+
 ## 조건문 if, if else, if elif else
 num = input("\ninput number : ")               ## 입력문
+print type(num)
 
 if num > 0 :
     print "num > 0"
@@ -60,4 +61,7 @@ elif num % 2 == 1 :
 else :
     print "????"
 
+char = raw_input("\ninput anythings : ")        ## 문자열 입력문
+print type(char)
+print char
 

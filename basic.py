@@ -96,12 +96,10 @@ while True :
             print os.environ.get('USERNAME')
         else :
             print os.getenv('USER')
-        # pass
-    
+            
     elif cmd == 'pwd' :
         print os.getcwd()
-        # pass
-    
+            
     elif cmd == 'ip' :
         if platform.system() == 'Windows' :         ## OS가 Windows인 경우
             ################ 텍스트 찾는 방법 ################

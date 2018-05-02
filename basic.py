@@ -101,13 +101,19 @@ while True :
         print os.getcwd()
         # pass
     elif cmd == 'ip' :
-        if platform.system() == 'Windows' :
+        if platform.system() == 'Windows' :         ## Windows 운영체제의 경우
+            ################ 텍스트 찾는 방법 ################
             buf = subprocess.check_output('ipconfig')
             index = buf.find("IPv4")
             newline = buf[index:].find("\n")
             
-            print index, newline
-            print buf[index:index+newline]
+            # print index, newline
+            # print buf[index:index+newline]
+            ipline = buf[index:index+newline]
+            ip = ipline.split(':')      ## ()를 기준으로 데이터를 분리
+
+            print ip[1].strip()         ## strip() : 공백 제거
+            #################################################
         else :
             buf = subprocess.check_output('ifconfig')
         

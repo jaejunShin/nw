@@ -97,11 +97,13 @@ while True :
         else :
             print os.getenv('USER')
         # pass
+    
     elif cmd == 'pwd' :
         print os.getcwd()
         # pass
+    
     elif cmd == 'ip' :
-        if platform.system() == 'Windows' :         ## Windows 운영체제의 경우
+        if platform.system() == 'Windows' :         ## OS가 Windows인 경우
             ################ 텍스트 찾는 방법 ################
             buf = subprocess.check_output('ipconfig')
             index = buf.find("IPv4")
@@ -114,11 +116,19 @@ while True :
 
             print ip[1].strip()         ## strip() : 공백 제거
             #################################################
-        else :
+        
+        else :                              ## Linux인 경우 같은 방법 적용    
             buf = subprocess.check_output('ifconfig')
+            target = 'addr:'
+            index = buf.find(target) + len(target)      ## len = length, 길이 만큼 출력문 제거
+            space = buf[index:].find("  ")
+
+            # print index, space
+            print buf[index:index+space]
         
     elif cmd == 'quit' :
         print cmd
         break
+    
     else :
         help()

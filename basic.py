@@ -1,5 +1,9 @@
 # -*- coding: utf8 -*-
 
+import os              ## 라이브러리 불러오기
+import platform
+import subprocess
+
 ## print "hello python"
 
 ## 변수
@@ -56,7 +60,7 @@ else :
 if num % 2 == 0 :           ## {}가 없기 때문에 들여쓰기로 구분
     print "even"
     print "exe"
-elif num % 2 == 1 :
+elif num % 2 == 1 :         ## else if가 아닌 elif임에 주의
     print "odd"
 else :
     print "????"
@@ -65,3 +69,44 @@ char = raw_input("\ninput anythings : ")        ## 문자열 입력문
 print type(char)
 print char
 
+## 함수
+def addition(numbers):          ## def 함수명(인자)
+    result = 0
+    for number in numbers:
+        result += number
+    return result
+
+data = [1, 2, 3]
+print addition(data)
+
+def help():
+    print "id ------ print user id"
+    print "pwd ------ print current pwd"
+    print "ip ------ print ipaddress"
+    print "quit ------ exit program"
+    
+
+help()
+
+## 무한 루프
+while True :
+    cmd = raw_input('>>> ')
+    if cmd == 'id' :
+        if platform.system() == 'windows' :
+            print os.environ.get('USERNAME')
+        else :
+            print os.getenv('USER')
+        # pass
+    elif cmd == 'pwd' :
+        print os.getcwd()
+        # pass
+    elif cmd == 'ip' :
+        if platform.system() == 'windows' :
+            buf = subprocess.check_output('ipconfig')
+        else :
+            buf = subprocess.check_output('ifconfig')
+    elif cmd == 'quit' :
+        print cmd
+        break
+    else :
+        help()

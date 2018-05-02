@@ -118,11 +118,18 @@ while True :
         else :                              ## Linux인 경우 같은 방법 적용    
             buf = subprocess.check_output('ifconfig')
             target = 'addr:'
-            index = buf.find(target) + len(target)      ## len = length, 길이 만큼 출력문 제거
-            space = buf[index:].find("  ")
-
+            # index = buf.find(target) + len(target)      ## len = length, 길이 만큼 출력문 제거
+            # space = buf[index:].find("  ")
             # print index, space
-            print buf[index:index+space]
+            # print buf[index:index+space]
+            
+            ################### 응용 ####################
+            index = buf.find(target)
+            space = buf[index:].find("  ")
+            ipline = buf[index:index+space]
+            ip = ipline.split(':')
+            print ip[1].strip()
+            ############################################
         
     elif cmd == 'quit' :
         print cmd

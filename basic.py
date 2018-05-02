@@ -1,4 +1,6 @@
 # -*- coding: utf8 -*-
+## 위 주석을 반드시 추가(한글 읽기)
+
 
 import os              ## 라이브러리 불러오기
 import platform

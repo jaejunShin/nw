@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+## 위 주석을 반드시 추가(한글 읽기)
 
 import urllib2
 

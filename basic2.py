@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 import urllib2
 
 ## urllib2 사용 예제

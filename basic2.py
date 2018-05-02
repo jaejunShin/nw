@@ -1,6 +1,3 @@
-# import os              ## 라이브러리 불러오기
-# import platform
-# import subprocess
 import urllib2
 
 ## urllib2 사용 예제

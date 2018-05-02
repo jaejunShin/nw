@@ -92,7 +92,7 @@ help()
 while True :
     cmd = raw_input('>>> ')
     if cmd == 'id' :
-        if platform.system() == 'windows' :
+        if platform.system() == 'Windows' :
             print os.environ.get('USERNAME')
         else :
             print os.getenv('USER')
@@ -101,10 +101,16 @@ while True :
         print os.getcwd()
         # pass
     elif cmd == 'ip' :
-        if platform.system() == 'windows' :
+        if platform.system() == 'Windows' :
             buf = subprocess.check_output('ipconfig')
+            index = buf.find("IPv4")
+            newline = buf[index:].find("\n")
+            
+            print index, newline
+            print buf[index:index+newline]
         else :
             buf = subprocess.check_output('ifconfig')
+        
     elif cmd == 'quit' :
         print cmd
         break

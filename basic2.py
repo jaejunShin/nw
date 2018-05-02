@@ -12,4 +12,9 @@ res = urllib2.urlopen(req)
 html = res.read()
 # print html
 ## ip주소/포트번호 패턴 찾기 d+.d+.d+.d+/d+ 의 패턴 = 정규표현식
-print re.findall("\d+\.\d+\.\d+\.\d+\/\d+", html)       
+## / 기준으로 ip, 포트번호 분리
+ipaddress, port = re.findall("\d+\.\d+\.\d+\.\d+\/\d+"
+                    , html)[0].split('/')
+
+print "ip : ", ipaddress+"\n", "port : ", port
+

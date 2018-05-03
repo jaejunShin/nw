@@ -16,12 +16,12 @@ while True :
 
     while True :
         try:
-            data = client.recv(1024)    ## 클라이언트에서 전송된 데이터 수신
+            data = client.recv(1024)    ## 클라이언트 데이터 수신
         except :
             print "Exception !!!"
             break
 
-        data = client.recv(1024)        ## 클라이언트 데이터 수신
+        ## data = client.recv(1024)        ## 클라이언트 데이터 수신
 
         if not data :                   ## 예외처리
             client.close()

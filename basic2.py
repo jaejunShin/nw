@@ -13,7 +13,7 @@ html = res.read()
 # print html
 
 ## ip/포트번호 패턴 찾기 d+.d+.d+.d+/d+ 의 패턴 = re모듈(정규표현식)
-## / 기준으로 ip, 포트번호 분리. 문자열 앞에 r을 써서 패턴 표시 확인.
+## / 기준으로 ip, 포트번호 분리. 문자열 앞에 r을 써서 패턴 표시 확인
 ## split으로 2개로 분리된 데이터 각각 저장
 ipaddress, port = re.findall(r"\d+\.\d+\.\d+\.\d+\/\d+"
                     , html)[0].split('/')       

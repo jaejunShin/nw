@@ -4,14 +4,22 @@
 ## flask 라이브러리 설치 선행(cmd > pip install flask)
 ## cmd > flask 입력 후 나오는 명령어 사용 후 작업
 ## browser > 127.0.0.1:5000
-from flask import Flask, render_template         ## reunder_template : html사용
+
+## reunder_template : html사용 / request : 요청 처리
+from flask import Flask, render_template, request         
 app = Flask(__name__)
 
 ## app.route() 호출 후 app.route()가 hello() 호출
 ## ()안의 인자는 주소, "/"는 기본 주소
 @app.route("/")                 
 def hello():
-    return "Hello World!"
+    return render_template("join.html")
+
+@app.route("/join", methods=['GET','POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
+def join():
+    if request.method == 'POST' :
+        return "POST!!"
+    return "GET!!"
 
 @app.route("/name")
 def name():

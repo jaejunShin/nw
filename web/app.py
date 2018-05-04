@@ -6,8 +6,11 @@
 ## browser > 127.0.0.1:5000
 
 ## reunder_template : html사용 / request : 요청 처리
-from flask import Flask, render_template, request         
+import hashlib
+from flask import Flask, render_template, request
+
 app = Flask(__name__)
+users = {}          ##type - dic
 
 ## app.route() 호출 후 app.route()가 hello() 호출
 ## ()안의 인자는 주소, "/"는 기본 주소
@@ -20,6 +23,10 @@ def join():
     if request.method == 'POST' :
         id = request.form['id']
         pw = request.form['pw']
+        if id not in users :
+            users[id] = hashlib.sha1(pw).hexdigest()
+        else :
+            return "Duplicate!!!"
         return "id: %s, pw: %s" % (id, pw)
     return "GET!!"
 

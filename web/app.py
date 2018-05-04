@@ -18,7 +18,9 @@ def hello():
 @app.route("/join", methods=['GET','POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
 def join():
     if request.method == 'POST' :
-        return "POST!!"
+        id = request.form['id']
+        pw = request.form['pw']
+        return "id: %s, pw: %s" % (id, pw)
     return "GET!!"
 
 @app.route("/name")

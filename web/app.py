@@ -16,7 +16,20 @@ users = {}          ##type - dic
 ## ()안의 인자는 주소, "/"는 기본 주소
 @app.route("/")                 
 def hello():
-    return render_template("join.html")
+    return render_template("login.html")
+
+@app.route("/login", methods=['POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
+def login():
+    if request.method == 'POST' :
+        id = request.form['id']
+        pw = request.form['pw']
+        if id in users :
+            if users[id] == hashlib.sha1(pw).hexdigest() :
+                return "login ok"
+            else : 
+                return "login fail !!!"
+        else :
+            return "login fail !!!"
 
 @app.route("/join", methods=['GET','POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
 def join():
@@ -27,8 +40,8 @@ def join():
             users[id] = hashlib.sha1(pw).hexdigest()
         else :
             return "Duplicate!!!"
-        return "id: %s, pw: %s" % (id, pw)
-    return "GET!!"
+        return "join ok"
+    return render_template("join.html")
 
 @app.route("/name")
 def name():

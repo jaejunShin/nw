@@ -4,7 +4,7 @@
 ## flask 라이브러리 설치 선행(cmd > pip install flask)
 ## cmd > flask 입력 후 나오는 명령어 사용 후 작업
 ## browser > 127.0.0.1:5000
-from flask import Flask         
+from flask import Flask, render_template         ## reunder_template : html사용
 app = Flask(__name__)
 
 ## app.route() 호출 후 app.route()가 hello() 호출

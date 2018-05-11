@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <!--
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  -->
+  <title>04_display</title> <!-- 스타일 임의 변경(block, in line) -->
+
+  <style>
+  /*
+
+  id 선언 시 #[id]
+  class 선언 시 .[class]
+  형태로 작성
+  none : 숨김, 사라짐
+  inline : 가로 배치, 스타일이 직관적으로 적용되지 않기 때문에 가급적 사용하지 않음
+  block : 세로 배치
+  
+  */
+  #diNode{ display: none; }			
+
+  .inline{ display: inline; }
+
+  .block{ display: block; }
+
+  /***************** block, inline style의 차이 확인 *****************/
+  #box1{
+	/*display: block;*/ background: red;
+	width: 100px; height: 100px;
+	padding: 30px; margin: 30px;		/*padding : 확장, margin : 상하 여백*/
+  }
+
+  #box2{
+	display: inline; background: red;
+	width: 100px; height: 100px;
+	padding: 30px; margin: 30px;
+  }
+  /*******************************************************************/
+
+  </style>
+ </head>
+
+ <body>
+  <div id='diNone'> 새우깡 </div>
+
+  <div class='inline'> 땅콩 </div>
+  <div class='inline'> 땅콩 </div>		<!-- div 기본 block style -->
+  <div class='inline'> 땅콩 </div>
+
+  <a class = 'block'> 민들레 </a>
+  <a class = 'block'> 민들레 </a>		<!-- a 기본 inline style -->
+  <a class = 'block'> 민들레 </a>
+
+  <hr />		<!-- hr / : 선으로 화면 구분 -->
+
+  <div id="exam1">
+	<p>의미없는 객체</p>
+	<span>더미객체</span>				<!-- span 기본 inline style -->
+	<div id="box1">대상 객체</div>		<!-- div 기본 block style -->
+	<span>더미객체</span>
+	<p>의미 없는 객체</p>
+  </div>
+
+  <hr />
+
+  <div id="exam2">
+	<p>의미없는 객체</p>
+	<span>더미객체</span>
+	<div id="box2">대상 객체</div>
+	<span>더미객체</span>
+	<p>의미 없는 객체</p>
+  </div>
+
+ </body>
+</html>

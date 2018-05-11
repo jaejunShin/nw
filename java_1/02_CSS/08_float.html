@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>08_float</title>
+
+
+ <style>
+	/*
+		float : block의 배치(좌,우 정렬)
+		float: left/right 사용 시 반드시 부모태그에 overflow: hidden을 설정
+	*/
+	#box { overflow: hidden; }
+	#box1{ overflow: hidden; float: right; }
+	#box1 > div{ float: left; }
+
+	#box2{ overflow: hidden }
+	#box2 > div{ float: right; }
+ </style>
+ </head>
+
+ <body>
+  <h1>Lorem ipsum dolor sit amet</h1>
+	<div id="box">
+		<div id="box1">
+			<div>1번 박스</div>
+			<div>2번 박스</div>
+			<div>3번 박스</div>
+		</div>
+	</div>
+  <h1>Lorem ipsum dolor sit amet</h1>
+  <hr/>
+  <h1>Lorem ipsum dolor sit amet</h1>
+	<div id="box2">
+		<div>1번 박스</div>
+		<div>2번 박스</div>
+		<div>3번 박스</div>		
+	</div>
+  <h1>Lorem ipsum dolor sit amet</h1>
+ </body>
+</html>

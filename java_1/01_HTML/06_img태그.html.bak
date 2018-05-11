@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>06_img태그</title>
+ </head>
+ <body>
+ <!--img:이미지를 삽일할 때 사용하는 태그 -src ='이미지 경로' alt='이미지 설명' -->
+ <img src="../image/Penguins.jpg" alt="1141x856 jpg 남극의 펭귄"><!-- width 없음-->
+ <img src="../image/Penguins.jpg" alt="1141x856 jpg 남극의 펭귄" width="500px" height="800px"><!-- width px-->
+ <img src="../image/Penguins.jpg" alt="1141x856 jpg 남극의 펭귄" width="100%"><!-- width %-->
+
+
+
+ </body>
+</html>

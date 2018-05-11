@@ -1,0 +1,8 @@
+www.naver.com
+www.google.com
+
+http://www.w3schools.com/default.asp
+http://www.w3schools.com/cssref/css_selectors.asp
+http://css3generator.com
+
+>>"http://fonts.googleapis.com/css?family=Indie+Flower"

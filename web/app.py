@@ -61,7 +61,9 @@ def login():
             return redirect("/")
         else :                                  ## 로그인 실패 시
             return "<script>alert('login fail'); history.back(-1);</script>"
-
+    if 'id' in session :
+        return redirect("/")
+    
     return render_template("login.html")
         
 @app.route("/join", methods=['GET','POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
@@ -82,6 +84,8 @@ def join():
         # else :
         #     return "Duplicate!!!"
         return "join ok"
+    if 'id' in session :
+        return redirect("/")
     return render_template("join.html")
 
 @app.route("/name")

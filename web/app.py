@@ -8,11 +8,12 @@
 ## reunder_template : html사용 / request : 요청 처리
 import hashlib
 import sqlite3                                                  ## sql db사용
-from flask import Flask, render_template, request, g, redirect  ## g는 전역변수와 유사한 객체
+from flask import Flask, render_template, request, g, redirect, session, escape  ## g는 전역변수와 유사한 객체
 
 DATABASE = 'database.db'
 
 app = Flask(__name__)
+app.secret_key = 'n1a456k565427t98a%j1508/%j55S095h948$i^492n'      ## 비밀키. 암호화를 위한 임의의 값 입력
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -20,10 +21,10 @@ def get_db():
         db = g._database = sqlite3.connect(DATABASE)
     return db
 
-@app.teardown_appcontext                                ## flask가 종료되는 시점에 사용될 함수.
+@app.teardown_appcontext                                ## flask가 종료되는 시점에 사용될 함수
 def close_connection(exception):
     db = getattr(g, '_database', None)
-    if db is not None:
+    if db is not None :
         db.close()
 
 def query_db(query, args=(), one=False, modify=False):
@@ -44,13 +45,24 @@ def query_db(query, args=(), one=False, modify=False):
 ## ()안의 인자는 주소, "/"는 기본 주소
 @app.route("/")                 
 def hello():
+    if 'id' in session :
+        return 'Logged in as %s' % escape(session['id'])
     return render_template("login.html")
 
 @app.route("/login", methods=['POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
 def login():
     if request.method == 'POST' :
-        id = request.form['id']
-        pw = request.form['pw']
+        id = request.form['id'].strip()
+        pw = hashlib.sha1(request.form['pw'].strip()).hexdigest()
+
+        sql = "select * from user where id='%s' and password='%s'" % (id, pw)
+        if query_db(sql, one=True) :            ## 로그인 성공 시
+            session['id'] = id
+            return redirect("/")
+        else :                                  ## 로그인 실패 시
+            return "<script>alert('login fail'); history.back(-1);</script>"
+
+    return render_template("login.html")
         
 @app.route("/join", methods=['GET','POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
 def join():

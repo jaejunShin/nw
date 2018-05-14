@@ -66,7 +66,7 @@ def join():
         pw = request.form['pw']
         sql = "insert into user(id, password) values ('%s', '%s')" % (id, pw)
         print sql
-        query_db(sql)
+        query_db(sql, modify=True)
         # if id not in users :
         #     users[id] = hashlib.sha1(pw).hexdigest()
         # else :

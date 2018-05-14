@@ -24,7 +24,7 @@ def login():
         id = request.form['id']
         pw = request.form['pw']
         if id in users :
-            if users[id] == hashlib.sha1(pw).hexdigest() :
+            if users[id] == hashlib.sha1(pw).hexdigest() :      ## hash는 항상 고정길이를 지님.
                 return "login ok"
             else : 
                 return "login fail !!!"

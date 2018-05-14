@@ -46,10 +46,15 @@ def query_db(query, args=(), one=False, modify=False):
 @app.route("/")                 
 def hello():
     if 'id' in session :
-        return 'Logged in as %s' % escape(session['id'])
+        return 'Logged in as %s <a href = "/logout">logout</a>' % escape(session['id'])
     return render_template("login.html")
 
-@app.route("/login", methods=['POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
+@app.route("/logout")
+def logout() :
+    session.pop('id', None)
+    return redirect('/login')
+
+@app.route("/login", methods=['GET', 'POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
 def login():
     if request.method == 'POST' :
         id = request.form['id'].strip()
@@ -83,7 +88,7 @@ def join():
         #     users[id] = hashlib.sha1(pw).hexdigest()
         # else :
         #     return "Duplicate!!!"
-        return "join ok"
+        return 'join ok <a href = "/login">Home</a>'
     if 'id' in session :
         return redirect("/")
     return render_template("join.html")

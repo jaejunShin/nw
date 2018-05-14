@@ -8,7 +8,7 @@
 ## reunder_template : html사용 / request : 요청 처리
 import hashlib
 import sqlite3                                                  ## sql db사용
-from flask import Flask, render_template, request, g            ## g는 전역변수와 유사한 객체
+from flask import Flask, render_template, request, g, redirect  ## g는 전역변수와 유사한 객체
 
 DATABASE = 'database.db'
 
@@ -51,19 +51,17 @@ def login():
     if request.method == 'POST' :
         id = request.form['id']
         pw = request.form['pw']
-        # if id in users :
-        #     if users[id] == hashlib.sha1(pw).hexdigest() :      ## hash는 항상 고정길이를 지님.
-        #         return "login ok"
-        #     else : 
-        #         return "login fail !!!"
-        # else :
-        #     return "login fail !!!"
-
+        
 @app.route("/join", methods=['GET','POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
 def join():
     if request.method == 'POST' :
         id = request.form['id'].strip()
         pw = hashlib.sha1(request.form['pw'].strip()).hexdigest()
+
+        sql = "select * from user where id='%s' " % id
+        if query_db(sql, one=True) :                    ## 중복 가입 방지
+            return "<script>alert('Existed ID'); history.back(-1);</script>"        ## 다시 가입화면으로
+
         sql = "insert into user(id, password) values ('%s', '%s')" % (id, pw)
         print sql
         query_db(sql, modify=True)

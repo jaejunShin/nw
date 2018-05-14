@@ -62,8 +62,8 @@ def login():
 @app.route("/join", methods=['GET','POST'])             ## get:주소창에서 접근, post:데이터 전송에 따른 접근
 def join():
     if request.method == 'POST' :
-        id = request.form['id']
-        pw = request.form['pw']
+        id = request.form['id'].strip()
+        pw = hashlib.sha1(request.form['pw'].strip()).hexdigest()
         sql = "insert into user(id, password) values ('%s', '%s')" % (id, pw)
         print sql
         query_db(sql, modify=True)
@@ -71,7 +71,7 @@ def join():
         #     users[id] = hashlib.sha1(pw).hexdigest()
         # else :
         #     return "Duplicate!!!"
-        # return "join ok"
+        return "join ok"
     return render_template("join.html")
 
 @app.route("/name")

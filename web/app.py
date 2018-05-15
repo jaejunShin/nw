@@ -6,7 +6,7 @@
 ## browser > 127.0.0.1:5000
 
 ## reunder_template : html사용 / request : 요청 처리
-import hashlib
+import hashlib                                                  ## 고유한 hash값을 비교
 import sqlite3                                                  ## sql db사용
 from flask import Flask, render_template, request, g, redirect, session, escape  ## g는 전역변수와 유사한 객체
 
@@ -46,7 +46,8 @@ def query_db(query, args=(), one=False, modify=False):
 @app.route("/")                 
 def hello():
     if 'id' in session :
-        return 'Logged in as %s <a href = "/logout">logout</a>' % escape(session['id'])
+        ## escape를 사용하지 않을 경우 사용자가 입력한 값을 code로 해석할 가능성이 있음
+        return 'Logged in as %s <a href = "/logout">logout</a>' % escape(session['id'])        
     return render_template("login.html")
 
 @app.route("/logout")
@@ -61,7 +62,7 @@ def login():
         pw = hashlib.sha1(request.form['pw'].strip()).hexdigest()
 
         sql = "select * from user where id='%s' and password='%s'" % (id, pw)
-        if query_db(sql, one=True) :            ## 로그인 성공 시
+        if query_db(sql, one=True) :            ## 로그인 성공 시 로그인 상태 유지
             session['id'] = id
             return redirect("/")
         else :                                  ## 로그인 실패 시

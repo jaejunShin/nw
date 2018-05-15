@@ -12,10 +12,10 @@ from flask import Flask, render_template, request, g, redirect, session, escape 
 
 DATABASE = 'database.db'
 
-app = Flask(__name__)
-app.secret_key = 'n1a456k565427t98a%j1508/%j55S095h948$i^492n'      ## 비밀키. 암호화를 위한 임의의 값 입력
+app = Flask(__name__)                   ## flask 객체 초기화
+app.secret_key = 'n1a456k565427t98a%j1508/%j55S095h948$i^492n'      ## 비밀키. 암호화(encoding)를 위한 임의의 값 입력
 
-def get_db():
+def get_db():                           ## DB연동을 위한 함수
     db = getattr(g, '_database', None)
     if db is None :
         db = g._database = sqlite3.connect(DATABASE)
@@ -27,11 +27,11 @@ def close_connection(exception):
     if db is not None :
         db.close()
 
-def query_db(query, args=(), one=False, modify=False):
+def query_db(query, args=(), one=False, modify=False):  ## DB query문 사용을 위한 함수
     cur = get_db().execute(query, args)
     if modify:
         try : 
-            get_db().commit()
+            get_db().commit()               ## 가입(DB에 추가) 시 commit이 필수
             cur.close()
         except :
             return False
@@ -42,7 +42,7 @@ def query_db(query, args=(), one=False, modify=False):
                                                         ## 2개의 if문을 한 줄로 쓰는 방법 지양(return을 하나 쓰기위한 코드)
 
 ## app.route() 호출 후 app.route()가 hello() 호출
-## ()안의 인자는 주소, "/"는 기본 주소
+## ()안의 인자는 주소, "/"는 기본 주소(index)
 @app.route("/")                 
 def hello():
     if 'id' in session :
@@ -66,7 +66,7 @@ def login():
             session['id'] = id
             return redirect("/")
         else :                                  ## 로그인 실패 시
-            return "<script>alert('login fail'); history.back(-1);</script>"
+            return "<script>alert('login fail'); history.back(-1);</script>"        ## history.back() = 뒤로가기 ()번
     if 'id' in session :
         return redirect("/")
     
